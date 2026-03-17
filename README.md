@@ -1,6 +1,4 @@
-
-![Logo](<img width="837" height="467" alt="Captura de tela 2026-03-17 162954" src="https://github.com/user-attachments/assets/d1dade6c-7d33-4686-bdfd-179eb53a5434" />
-)
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
 
 # TERMO DE ABERTURA DO PROJETO - DRIVEZ
