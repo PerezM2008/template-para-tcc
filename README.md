@@ -2,7 +2,7 @@
 ![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
 
-# DRIVEZ
+# TERMO DE ABERTURA DO PROJETO - DRIVEZ
 
 Este repositório serve como modelo (template) para organização e versionamento do Trabalho de Conclusão de Curso. Utilize esta estrutura para manter seu projeto organizado e facilitar o acompanhamento do orientador.
 
