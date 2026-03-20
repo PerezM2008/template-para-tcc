@@ -3,7 +3,7 @@
 
 # TERMO DE ABERTURA DO PROJETO - DRIVEZ
 
-Este repositório serve como modelo (template) para organização e versionamento do Trabalho de Conclusão de Curso. Utilize esta estrutura para manter seu projeto organizado e facilitar o acompanhamento do orientador.
+Desenvolver uma aplicação voltada para o Trabalho de Conclusão de Curso (TCC) com foco em mobilidade e assistência urbana. O objetivo principal é oferecer uma plataforma eficiente que conecte motoristas a serviços de Guincho e assistência automobilística, proporcionando suporte rápido e acessível em todo o território nacional.
 
 ## Sobre este Template
 
