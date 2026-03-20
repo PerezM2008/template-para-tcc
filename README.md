@@ -51,9 +51,9 @@ Exemplo: git commit -m `Adiciona introdução com contexto do problema`
 
 ## Authors
 
-- [@Aluno1](https://www.github.com/octokatherine)
-- [@Aluno2](https://www.github.com/octokatherine)
-- [@Aluno3](https://www.github.com/octokatherine)
-- [@Aluno4](https://www.github.com/octokatherine)
-- [@Aluno5](https://www.github.com/octokatherine)
+- [@MatheusPerez](https://github.com/PerezM2008)
+- [@JoaoBlesa](https://github.com/Joaoblesa)
+- [@PauloVinicius](https://github.com/Oluapvinicius)
+- [@EduardoFeitosa](https://github.com/EduardoFeitosa08)
+
 
