@@ -23,15 +23,18 @@ Semestre: 2026/1
 ### Documentação
 
 ├── 📂 docs              
+
 │   └── 📄 proposta.pptx    
 │   └── 📄 wireframes.md  
-│   └── 📄 [TAP](https://github.com/PerezM2008/template-para-tcc/wiki/TAP-%E2%80%90-DriveZ) 
+│   └── 📄 [TAP](https://github.com/PerezM2008/template-para-tcc/wiki/TAP-%E2%80%90-DriveZ)
+
 │   └── 📄 LER.docx    
 │   └── 📄 apresentação_prévia.pptx     #apresentação prévia    
 │   └── 📄 apresentação.pptx            #apresentação final
 
 
 ├── 📂 code
+
 │   └── 📂 banco   
 │   └── 📂 backend   
 │   └── 📂 frontend  
