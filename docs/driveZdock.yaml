@@ -1,0 +1,672 @@
+
+openapi: 3.0.3
+info:
+  title: Projeto DriveZ 
+  description: |-
+   API destinada ao gerenciamento da aplicação
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: sr.matheusgabriel.em@gmail.comm
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:8080
+paths:
+  # ==========================================
+  # CRUD DE PEDIDOS
+  # ==========================================
+  /v1/pedidos:
+    get:
+      tags: [Pedido]
+      summary: Lista todos os pedidos
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+    post:
+      tags: [Pedido]
+      summary: Adiciona um novo pedido
+      description: Adiciona uma nova solicitação de pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '201':
+          description: Sucesso na operação
+        '400':
+          description: Operação Inválida
+
+  /v1/pedidos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [Pedido]
+      summary: Busca um pedido pelo ID
+      responses:
+        '200':
+          description: Sucesso
+        '404':
+          description: Não encontrado
+    put:
+      tags: [Pedido]
+      summary: Atualiza um pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pedido'
+      responses:
+        '200':
+          description: Atualizado com sucesso
+    delete:
+      tags: [Pedido]
+      summary: Deleta um pedido
+      responses:
+        '204':
+          description: Deletado com sucesso
+
+  # ==========================================
+  # CRUD DE CLIENTES
+  # ==========================================
+  /v1/clientes:
+    get:
+      tags: [Cliente]
+      summary: Lista todos os clientes
+      responses:
+        '200':
+          description: Sucesso
+    post:
+      tags: [Cliente]
+      summary: Cadastra um novo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Criado
+          
+  /v1/clientes/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [Cliente]
+      summary: Busca cliente por ID
+      responses:
+        '200':
+          description: Sucesso
+    put:
+      tags: [Cliente]
+      summary: Atualiza cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Atualizado
+    delete:
+      tags: [Cliente]
+      summary: Deleta cliente
+      responses:
+        '204':
+          description: Deletado
+
+  # ==========================================
+  # CRUD DE PRESTADORES
+  # ==========================================
+  /v1/prestadores:
+    get:
+      tags: [Prestador]
+      summary: Lista todos os prestadores
+      responses:
+        '200':
+          description: Sucesso
+    post:
+      tags: [Prestador]
+      summary: Cadastra um novo prestador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prestador'
+      responses:
+        '201':
+          description: Criado
+
+  /v1/prestadores/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags: [Prestador]
+      summary: Busca prestador por ID
+      responses:
+        '200':
+          description: Sucesso
+    put:
+      tags: [Prestador]
+      summary: Atualiza prestador
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Prestador'
+      responses:
+        '200':
+          description: Atualizado
+    delete:
+      tags: [Prestador]
+      summary: Deleta prestador
+      responses:
+        '204':
+          description: Deletado
+
+  # ==========================================
+  # CRUD DE VEICULOS
+  # ==========================================
+  /v1/veiculo:
+    post:
+      tags: [Veiculo]
+      summary: Cadastra um novo veículo
+      description: Adiciona um veículo à frota (pode ser vinculado a cliente ou prestador)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Veiculo'
+      responses:
+        '201':
+          description: Veículo cadastrado com sucesso
+    get:
+      tags: [Veiculo]
+      summary: Lista todos os veículos
+      responses:
+        '200':
+          description: Retorna array de veículos
+
+  /v1/veiculo/{id}:
+    get:
+      tags: [Veiculo]
+      summary: Obtém um veículo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Dados do veículo
+    put:
+      tags: [Veiculo]
+      summary: Atualiza dados do veículo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Veiculo'
+      responses:
+        '200':
+          description: Veículo atualizado
+    delete:
+      tags: [Veiculo]
+      summary: Remove um veículo do sistema
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Veículo removido
+
+  # ==========================================
+  # CRUD DE SERVIÇOS
+  # ==========================================
+  /v1/servicos:
+    get:
+      tags: [Servicos]
+      summary: Lista todos os serviços disponíveis
+      responses:
+        '200':
+          description: Sucesso
+
+    post:
+      tags:
+        - Servicos
+      summary: Cadastra um novo tipo de servico
+      requestBody:
+        required: true
+        content:
+          application/json: 
+            schema:
+              $ref: '#/components/schemas/Servicos'
+      responses:
+        '201':
+          description: Criado
+
+  /v1/servicos/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+    put:
+      tags: [Servicos]
+      summary: Atualiza dados do serviço
+      responses:
+        '200':
+          description: Atualizado
+    delete:
+      tags: [Servicos]
+      summary: Remove um serviço
+      responses:
+        '204':
+          description: Removido
+
+  # ==========================================
+  # CRUD DE ENDEREÇOS
+  # ==========================================
+  /v1/endereco:
+    post:
+      tags: [Endereco]
+      summary: Cadastra um novo endereço
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+      responses:
+        '201':
+          description: Endereço salvo
+    get:
+      tags: [Endereco]
+      summary: Lista endereços cadastrados
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+      responses:
+        '201':
+          description: Endereço salvo
+  
+  /v1/endereco/{id}:
+    put:
+      tags: [Endereco]
+      summary: Atualiza endereço existente
+      responses:
+        '200':
+          description: Atualizado
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+    delete:
+      tags: [Endereco]
+      summary: Deleta um endereço
+      responses:
+        '204':
+          description: Removido
+
+  # ==========================================
+  # CRUD DE AVALIAÇÕES (tbl_avaliacao)
+  # ==========================================
+  /v1/avaliacao:
+    post:
+      tags: [Avaliacao]
+      summary: Cria uma nova avaliação para um pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Avaliacao'
+      responses:
+        '201':
+          description: Avaliação enviada
+    get:
+      tags: [Avaliacao]
+      summary: Lista todas as avaliações
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+      responses:
+        '201':
+          description: Endereço salvo
+
+  /v1/avaliacao/{id}:
+    get:
+      tags: [Avaliacao]
+      summary: Detalhes de uma avaliação
+      responses:
+        '201':
+          description: Endereço salvo
+
+
+    delete:
+      tags: [Avaliacao]
+      summary: Remove uma avaliação técnica/indesejada
+      responses:
+        '204':
+          description: Removido
+
+  # ==========================================
+  # CRUD DE MENSAGENS (Chat/Comunicação)
+  # ==========================================
+  /v1/mensagem:
+    post:
+      tags: [Mensagem]
+      summary: Envia uma nova mensagem no chat do pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mensagem'
+      responses:
+        '201':
+          description: Mensagem enviada
+    get:
+      tags: [Mensagem]
+      summary: Histórico geral de mensagens (Log)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+      responses:
+        '201':
+          description: Endereço salvo
+
+  /v1/mensagem/{id}:
+    get:
+      tags: [Mensagem]
+      summary: Recupera uma mensagem específica
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Endereco'
+      responses:
+        '201':
+          description: Endereço salvo
+          
+    delete:
+      tags: [Mensagem]
+      summary: Apaga uma mensagem (Delete for everyone)
+      responses:
+        '204':
+          description: Removido
+          
+
+
+  # (As rotas de GET {id}, PUT e DELETE para Veiculos, Servicos, Enderecos, Mensagens e Avaliacoes seguem o exato mesmo padrão acima. Para não estourar o limite de caracteres, defini abaixo a estrutura de dados completa que atende todas as rotas).
+
+components:
+  schemas:
+
+    # 1. tbl_pedido
+    Pedido:
+      type: object
+      required: [status, data_solicitacao, endereco_destino, endereco_origem, descricao, id_cliente, id_prestador]
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+          enum: [PENDENTE, EM_ANDAMENTO, CONCLUIDO, CANCELADO]
+        data_solicitacao:
+          type: string
+          format: date-time
+        endereco_destino:
+          type: string
+        endereco_origem:
+          type: string
+        descricao:
+          type: string
+        distancia_km:
+          type: number
+          format: float
+        id_cliente:
+          type: integer
+        id_prestador:
+          type: integer
+
+    # 2. tbl_cliente
+    Cliente:
+      type: object
+      required: [nome, email, telefone, senha]
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+        img_perfil:
+          type: string
+          format: binary
+        cpf:
+          type: string
+        cnpj:
+          type: string
+        senha:
+          type: string
+
+    # 3. tbl_prestador
+    Prestador:
+      type: object
+      required: [nome, email, telefone, senha]
+      properties:
+        id:
+          type: integer
+        nome:
+          type: string
+        email:
+          type: string
+        telefone:
+          type: string
+        img_perfil:
+          type: string
+          format: binary
+        cpf:
+          type: string
+        cnh:
+          type: string
+        cnpj:
+          type: string
+        senha:
+          type: string
+
+    # 4. tbl_veiculo
+    Veiculo:
+      type: object
+      required: [codigo_renavam, placa]
+      properties:
+        id:
+          type: integer
+        categoria:
+          type: string
+        validade:
+          type: string
+          format: date
+        codigo_renavam:
+          type: string
+        placa:
+          type: string
+
+    # 5. tbl_servicos
+    Servicos:
+      type: object
+      required: [nome_servico, descricao_servico]
+      properties:
+        id:
+          type: integer
+        nome_servico:
+          type: string
+        descricao_servico:
+          type: string
+        img_icone:
+          type: string
+          format: binary
+
+    # 6. tbl_endereco
+    Endereco:
+      type: object
+      required: [cep, uf, cidade, logradouro, bairro]
+      properties:
+        id:
+          type: integer
+        cep:
+          type: string
+        uf:
+          type: string
+        cidade:
+          type: string
+        logradouro:
+          type: string
+        bairro:
+          type: string
+
+    # 7. tbl_avaliacao
+    Avaliacao:
+      type: object
+      required: [id_pedido]
+      properties:
+        id:
+          type: integer
+        nota:
+          type: number
+          format: float
+        comentario:
+          type: string
+        id_pedido:
+          type: integer
+
+    # 8. tbl_mensagem
+    Mensagem:
+      type: object
+      required: [data_envio, texto_mensagem, lida, id_pedido, id_prestador, id_cliente]
+      properties:
+        id:
+          type: integer
+        data_envio:
+          type: string
+          format: date-time
+        texto_mensagem:
+          type: string
+        lida:
+          type: boolean
+        imagem:
+          type: string
+          format: binary
+        id_pedido:
+          type: integer
+        id_prestador:
+          type: integer
+        id_cliente:
+          type: integer
+
+    # ==========================================
+    # TABELAS ASSOCIATIVAS (Relacionamentos N:M)
+    # ==========================================
+    
+    # 9. tbl_veiculo_prestador
+    VeiculoPrestador:
+      type: object
+      properties:
+        id: { type: integer }
+        id_prestador: { type: integer }
+        id_veiculo: { type: integer }
+
+    # 10. tbl_veiculo_cliente
+    VeiculoCliente:
+      type: object
+      properties:
+        id: { type: integer }
+        id_cliente: { type: integer }
+        id_veiculo: { type: integer }
+
+    # 11. tbl_prestador_servico
+    PrestadorServico:
+      type: object
+      properties:
+        id: { type: integer }
+        id_prestador: { type: integer }
+        id_servicos: { type: integer }
+
+    # 12. tbl_cliente_endereco
+    ClienteEndereco:
+      type: object
+      properties:
+        id: { type: integer }
+        id_cliente: { type: integer }
+        id_endereco: { type: integer }
+
+    # 13. tbl_prestador_endereco
+    PrestadorEndereco:
+      type: object
+      properties:
+        id: { type: integer }
+        id_prestador: { type: integer }
+        id_endereco: { type: integer }
+
+        
