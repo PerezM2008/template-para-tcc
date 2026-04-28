@@ -1,4 +1,4 @@
-![Logo](./logo/logoDrivZ.trans.png)
+![Logo](./Logo/logoDrivZ.trans.png)
 
 
 # TERMO DE ABERTURA DO PROJETO - DRIVEZ
