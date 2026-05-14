@@ -65,7 +65,7 @@ FOREIGN KEY (id_prestador) REFERENCES tbl_prestador (id_prestador)
 
 CREATE TABLE tbl_status(
 id_status int primary key auto_increment,
-status boolean not null,
+status varchar(100) not null,
 id_pedido int not null,
 FOREIGN KEY (id_pedido) REFERENCES tbl_pedido (id_pedido)
 );
