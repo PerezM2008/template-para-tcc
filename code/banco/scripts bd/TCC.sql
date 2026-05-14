@@ -52,7 +52,6 @@ bairro varchar(200) not null
 
 CREATE TABLE tbl_pedido(
 id_pedido int primary key auto_increment,
-status_pedido enum("Pendente","Em andamento","Finalizado") not null,
 data_solicitacao datetime not null,
 endereco_destino varchar(200) not null,
 endereco_origem varchar(200) not null,
@@ -64,6 +63,13 @@ FOREIGN KEY (id_cliente) REFERENCES tbl_cliente (id_cliente),
 FOREIGN KEY (id_prestador) REFERENCES tbl_prestador (id_prestador)
 );
 
+CREATE TABLE tbl_status(
+id_status int primary key auto_increment,
+status boolean not null,
+id_pedido int not null,
+FOREIGN KEY (id_pedido) REFERENCES tbl_pedido (id_pedido)
+);
+
 CREATE TABLE tbl_avaliacao(
 id_avaliacao int primary key auto_increment,
 nota decimal(3,1) null,
@@ -71,8 +77,6 @@ comentario varchar(150) null,
 id_pedido int not null,
 FOREIGN KEY (id_pedido) REFERENCES tbl_pedido (id_pedido)
 );
-
-select tbl_mensagem;
 
 CREATE TABLE tbl_mensagem(
 id_mensagem int primary key auto_increment,
@@ -143,7 +147,7 @@ SELECT * FROM tbl_veiculo_cliente;
 SELECT * FROM tbl_prestador_servico;
 SELECT * FROM tbl_prestador_endereco;
 SELECT * FROM tbl_cliente_endereco;
-
+SELECT * FROM tbl_status;
 
 
 
